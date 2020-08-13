@@ -1,0 +1,58 @@
+
+syntax = "proto3";
+
+package shelf.v1;
+
+option java_multiple_files = true;
+option java_outer_classname = "BookProto";
+option java_package = "com.apssouza.bookstore.shelf.v1";
+option go_package = "shelf/v1;shelfv1";
+
+
+import "google/protobuf/empty.proto";
+
+
+// This API manages shelves resources.
+service ShelfService {
+    // Returns a list of all shelves in the bookstore.
+    rpc ListShelves(google.protobuf.Empty) returns (ListShelvesResponse) {}
+    // Creates a new shelf in the bookstore.
+    rpc CreateShelf(CreateShelfRequest) returns (Shelf) {}
+    // Returns a specific bookstore shelf.
+    rpc GetShelf(GetShelfRequest) returns (Shelf) {}
+    // Deletes a shelf, including all books that are stored on the shelf.
+    rpc DeleteShelf(DeleteShelfRequest) returns (google.protobuf.Empty) {}
+}
+
+
+// A shelf resource.
+message Shelf {
+    // A unique shelf id.
+    int64 id = 1;
+    // A theme of the shelf (fiction, poetry, etc).
+    string theme = 2;
+}
+
+// Response to ListShelves call.
+message ListShelvesResponse {
+    // Shelves in the bookstore.
+    repeated Shelf shelves = 1;
+}
+
+// Request message for CreateShelf method.
+message CreateShelfRequest {
+    // The shelf resource to create.
+    Shelf shelf = 1;
+}
+
+// Request message for GetShelf method.
+message GetShelfRequest {
+    // The ID of the shelf resource to retrieve.
+    int64 shelf = 1;
+}
+
+// Request message for DeleteShelf method.
+message DeleteShelfRequest {
+    // The ID of the shelf to delete.
+    int64 shelf = 1;
+}

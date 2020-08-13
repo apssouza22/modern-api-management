@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package book.v1;
+
+option java_multiple_files = true;
+option java_outer_classname = "BookProto";
+option java_package = "com.apssouza.bookstore.book.v1";
+option go_package = "book/v1;bookv1";
+
+
+import "google/protobuf/empty.proto";
+
+// This API manages  books resources.
+service Bookstore {
+    // Returns a list of books on a shelf.
+    rpc ListBooks(ListBooksRequest) returns (ListBooksResponse) {}
+    // Creates a new book.
+    rpc CreateBook(CreateBookRequest) returns (Book) {}
+    // Returns a specific book.
+    rpc GetBook(GetBookRequest) returns (Book) {}
+    // Deletes a book from a shelf.
+    rpc DeleteBook(DeleteBookRequest) returns (google.protobuf.Empty) {}
+}
+
+
+// A book resource.
+message Book {
+    // A unique book id.
+    int64 id = 1;
+    // An author of the book.
+    string author = 2;
+    // A book title.
+    string title = 3;
+}
+
+// Request message for ListBooks method.
+message ListBooksRequest {
+    // ID of the shelf which books to list.
+    int64 shelf = 1;
+}
+
+// Response message to ListBooks method.
+message ListBooksResponse {
+    // The books on the shelf.
+    repeated Book books = 1;
+}
+
+// Request message for CreateBook method.
+message CreateBookRequest {
+    // The ID of the shelf on which to create a book.
+    int64 shelf = 1;
+    // A book resource to create on the shelf.
+    Book book = 2;
+}
+
+// Request message for GetBook method.
+message GetBookRequest {
+    // The ID of the shelf from which to retrieve a book.
+    int64 shelf = 1;
+    // The ID of the book to retrieve.
+    int64 book = 2;
+}
+
+// Request message for DeleteBook method.
+message DeleteBookRequest {
+    // The ID of the shelf from which to delete a book.
+    int64 shelf = 1;
+    // The ID of the book to delete.
+    int64 book = 2;
+}
