@@ -16,8 +16,11 @@ code style
 We are going to guarantee back-compatibility of the API by using the project Buf to ensure that the API 
 changes doesn't break the existing contract.
 
+# Docker image
 
-docker run -it -v "$(pwd):/workspace" -v "$HOME"/.m2:/root/.m2  -w /workspace   proto-api
- 
-$ docker run -it --rm --name my-maven-project -v "$PWD":/usr/src/app \
- -v "$HOME"/.m2:/root/.m2 -w /usr/src/app maven:3.2-jdk-7 mvn clean install
+```
+docker build . -f assets/Dockerfile -t apssouza22/proto-api-manager
+docker run -it -v "$(pwd):/workspace" -v "$HOME"/.m2:/root/.m2  -w /workspace   apssouza22/proto-api-manager
+make generate
+make install
+``` 
