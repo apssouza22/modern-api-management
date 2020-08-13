@@ -1,0 +1,12 @@
+type: google.api.http
+config_version: 3
+
+http:
+  rules:
+    - selector: book.v1.Bookstore.ListBooks
+      post: '/apis/v1/Bookstore.ListBooks'
+      body: "*"
+
+    - selector: book.v1.Bookstore.CreateBook
+      post: '/apis/v1/Bookstore.CreateBook'
+      body: "*"
