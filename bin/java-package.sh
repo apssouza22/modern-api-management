@@ -22,20 +22,10 @@ function packageAll() {
   while read module; do
     moduleName="$(echo $module | cut -d' ' -f2)"
 
-    echo "$buildPath -  $moduleName"
     packageModule $moduleName
-  done < $MODULES_FILE
+  done < "$MODULES_FILE"
 
   echo "*** Package SUCCESS!! ***"
 }
 
 packageAll
-
-
-protoc \
-      -I /workspace/bin/../protos/local \
-      -I /workspace/bin/../protos/thirdparty/grpc-gateway \
-      -I /workspace/bin/../protos/thirdparty/googleapis \
-      --grpc-java_out="$javaOut" \
-      --plugin=protoc-gen-grpc-java=protoc-gen-grpc-java \
-      /workspace/bin/../protos/local/book/v1/books.proto

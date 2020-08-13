@@ -11,6 +11,8 @@ PROTO_ROOT="$ROOT/protos/local"
 rm -rf "$GEN_PATH"
 mkdir -p "$GEN_PATH"
 
+cp "$ROOT/assets/go.mod" "$GEN_PATH"
+
 for proto in $(find "$PROTO_ROOT" -name "*.proto"); do
   echo "Generating Go code for $proto"
   protoc \
