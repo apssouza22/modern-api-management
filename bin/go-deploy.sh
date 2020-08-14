@@ -1,37 +1,21 @@
 #!/usr/bin/env bash
 set -e
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
+pwd="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
+ROOT="$pwd/.."
+
 GEN_PATH=$ROOT/gen
 GO_GEN_PATH=$GEN_PATH/go
-GO_REPO_NAME=apis-go
-GO_REPO_URL=${GO_REPO_URL:-"git@gitlab.deem.com:fiji/$GO_REPO_NAME.git"}
+GO_REPO_NAME=protobuf-gen-code
+GO_REPO_URL="git@github.com:apssouza22/$GO_REPO_NAME"
 CURRENT_BRANCH=${GO_REPO_BRANCH:-$(git rev-parse --abbrev-ref HEAD)}
 GO_PKG=gitlab.deem.com/fiji/apis-go
-BUILD_DIR="$ROOT/build"
 
 # Flags
 PUBLISH=0
 RELEASE_PATCH=0
 
-rm -rf $GEN_PATH
-mkdir $GEN_PATH
-
-# Check if the protoc command is available
-if [ ! -x "$(command -v protoc)" ]; then
-  echo "Missing protobuf compiler executable in PATH."
-  exit 1
-fi
-
-# Check if the protoc-gen-go command is available
-if [ ! -x "$(command -v protoc-gen-go)" ]; then
-  echo "Missing protobuf go plugin. Download by running:
-go get -u github.com/golang/protobuf/protoc-gen-go
-"
-  exit 1
-fi
-
-SEMVER_LIB=$ROOT/semver
+SEMVER_LIB=$ROOT/assets/semver
 # Check if the semver tool is available. It is part of the repo and no explicit download is required
 if [ ! -f $SEMVER_LIB ]; then
   echo "Missing semver lib. It should be available in the repo
@@ -53,12 +37,12 @@ function updateGoRepository() {
   cd $GEN_PATH
   rm -rf $GEN_PATH/$GO_REPO_NAME
 
-  git clone --depth 1 $GO_REPO_URL --branch master --single-branch "$GEN_PATH/$GO_REPO_NAME"
+  git clone --depth 1 "$GO_REPO_URL.git" --branch master --single-branch "$GEN_PATH/$GO_REPO_NAME"
 
   setupBranch $GEN_PATH/$GO_REPO_NAME
 
   # Copy the generated files out of the pb-* path into the repository
-  cp -R $GO_GEN_PATH/$GO_PKG/* $GEN_PATH/$GO_REPO_NAME
+  cp -R $GO_GEN_PATH/* $GEN_PATH/$GO_REPO_NAME
 
   commitAndPush $GEN_PATH/$GO_REPO_NAME
 
@@ -83,7 +67,7 @@ function createPatchRelease() {
 #   reponame:    The name of the repository from which the tag should be fetched
 function getLatestTag() {
   local reponame="$1"
-  local latestTag=$(git ls-remote --tags --sort="v:refname" https://gitlab.deem.com/fiji/$reponame | tail -n1 | sed 's/.*\///; s/\^{}//')
+  local latestTag=$(git ls-remote --tags --sort="v:refname" "$GO_REPO_URL.git" | tail -n1 | sed 's/.*\///; s/\^{}//')
   echo $latestTag
 }
 
@@ -226,7 +210,6 @@ function buildAll() {
     printf "\n$(printDate) *** Creating a patch release ***\n"
     createPatchRelease "$GO_REPO_NAME"
   fi
-  rm -rf $GEN_PATH
 
   echo "*** $(printDate) BUILD SUCCESS!! ***"
 }
