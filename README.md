@@ -24,3 +24,8 @@ docker run -it -v "$(pwd):/workspace" -v "$HOME"/.m2:/root/.m2  -w /workspace   
 make generate
 make install
 ``` 
+
+
+# OpenAPI with Swagger
+- Run the services/apihttp/main.go
+- Access https://localhost:8081/?def-file=./definition/book/v1/books.swagger.json

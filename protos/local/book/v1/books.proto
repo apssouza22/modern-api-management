@@ -5,7 +5,7 @@ package book.v1;
 option java_multiple_files = true;
 option java_outer_classname = "BookProto";
 option java_package = "com.apssouza.bookstore.book.v1";
-option go_package = "book/v1;bookv1";
+option go_package = "bookv1";
 
 
 import "google/protobuf/empty.proto";

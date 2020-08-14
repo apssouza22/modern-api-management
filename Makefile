@@ -7,4 +7,4 @@ generate:
 install:
 	bin/java-package.sh && \
     bin/java-install.sh && \
-    bin/go-install.sh
+    bin/go-deploy.sh

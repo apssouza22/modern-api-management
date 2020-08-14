@@ -35,9 +35,12 @@
   <script src="swagger-ui-standalone-preset.js"> </script>
   <script>
     window.onload = function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      const definitionFile = urlParams.get('def-file');
+
       // Begin Swagger UI call region
       const ui = SwaggerUIBundle({
-        url: "./definition/example.swagger.json",
+        url: definitionFile,
         dom_id: '#swagger-ui',
         deepLinking: true,
         presets: [

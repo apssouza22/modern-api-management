@@ -9,3 +9,4 @@ rm -rf "$ROOT/docs/swagger/definition"
 cp -r "$ROOT/gen/swagger/" "$ROOT/docs/swagger/definition"
 
 statik -m -f -src "$ROOT/docs/swagger/"
+mv "$ROOT/statik" "$ROOT/gen/go/statik"

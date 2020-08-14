@@ -6,7 +6,7 @@ package shelf.v1;
 option java_multiple_files = true;
 option java_outer_classname = "BookProto";
 option java_package = "com.apssouza.bookstore.shelf.v1";
-option go_package = "shelf/v1;shelfv1";
+option go_package = "shelfv1";
 
 
 import "google/protobuf/empty.proto";

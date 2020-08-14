@@ -1,3 +1,4 @@
 .idea/
 gen/
-statik
+services/apihttp/statik
+/docs/swagger/definition/
