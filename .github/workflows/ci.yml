@@ -1,0 +1,32 @@
+name: protobuf
+on: [pull_request]
+jobs:
+  protos-check:
+    name: Build
+    runs-on: ubuntu-latest
+    container: bufbuild/buf
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v1
+      - name: Checking code style
+        run: buf check lint --input-config protos/local/buf.yaml
+      - name: Checking breaking changes
+        run: |
+          git fetch --depth 1 origin master
+          if ! git show-branch master; then
+            echo "Creating master branch"
+            git branch master origin/master
+          fi
+#          buf check breaking --against-input .git#branch=master --input-config protos/local/buf.yaml
+  generate:
+    name: Regenerate files
+    runs-on: ubuntu-latest
+    container: 
+      image: apssouza/proto-api-manager
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v1
+    - name: Regenerate files
+      run: make generate
+    - name: Check for a diff
+      run: git diff --exit-code
