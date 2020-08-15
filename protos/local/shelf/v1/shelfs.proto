@@ -15,18 +15,30 @@ import "google/protobuf/empty.proto";
 // This API manages shelves resources.
 service ShelfService {
     // Returns a list of all shelves in the bookstore.
-    rpc ListShelves(google.protobuf.Empty) returns (ListShelvesResponse) {}
+    rpc ListShelves(ListShelvesRequest) returns (ListShelvesResponse) {}
     // Creates a new shelf in the bookstore.
-    rpc CreateShelf(CreateShelfRequest) returns (Shelf) {}
+    rpc CreateShelf (CreateShelfRequest) returns (CreateShelfResponse) {}
     // Returns a specific bookstore shelf.
-    rpc GetShelf(GetShelfRequest) returns (Shelf) {}
+    rpc GetShelf (GetShelfRequest) returns (GetShelfResponse) {}
     // Deletes a shelf, including all books that are stored on the shelf.
-    rpc DeleteShelf(DeleteShelfRequest) returns (google.protobuf.Empty) {}
+    rpc DeleteShelf(DeleteShelfRequest) returns (DeleteShelfResponse) {}
 }
+// DeleteShelf response
+message DeleteShelfResponse {}
 
+// ListShelves request
+message ListShelvesRequest {}
 
 // A shelf resource.
-message Shelf {
+message GetShelfResponse {
+    // A unique shelf id.
+    int64 id = 1;
+    // A theme of the shelf (fiction, poetry, etc).
+    string theme = 2;
+}
+
+// A shelf resource.
+message CreateShelfResponse {
     // A unique shelf id.
     int64 id = 1;
     // A theme of the shelf (fiction, poetry, etc).
@@ -36,13 +48,13 @@ message Shelf {
 // Response to ListShelves call.
 message ListShelvesResponse {
     // Shelves in the bookstore.
-    repeated Shelf shelves = 1;
+    repeated CreateShelfResponse shelves = 1;
 }
 
 // Request message for CreateShelf method.
 message CreateShelfRequest {
     // The shelf resource to create.
-    Shelf shelf = 1;
+    CreateShelfResponse shelf = 1;
 }
 
 // Request message for GetShelf method.

@@ -11,20 +11,31 @@ option go_package = "bookv1";
 import "google/protobuf/empty.proto";
 
 // This API manages  books resources.
-service Bookstore {
+service BookstoreService {
     // Returns a list of books on a shelf.
     rpc ListBooks(ListBooksRequest) returns (ListBooksResponse) {}
     // Creates a new book.
-    rpc CreateBook(CreateBookRequest) returns (Book) {}
+    rpc CreateBook (CreateBookRequest) returns (CreateBookResponse) {}
     // Returns a specific book.
-    rpc GetBook(GetBookRequest) returns (Book) {}
+    rpc GetBook (GetBookRequest) returns (GetBookResponse) {}
     // Deletes a book from a shelf.
-    rpc DeleteBook(DeleteBookRequest) returns (google.protobuf.Empty) {}
+    rpc DeleteBook(DeleteBookRequest) returns (DeleteBookResponse) {}
 }
 
+// Delete book response
+message DeleteBookResponse {}
 
 // A book resource.
-message Book {
+message CreateBookResponse {
+    // A unique book id.
+    int64 id = 1;
+    // An author of the book.
+    string author = 2;
+    // A book title.
+    string title = 3;
+}
+// A book resource.
+message GetBookResponse {
     // A unique book id.
     int64 id = 1;
     // An author of the book.
@@ -42,7 +53,7 @@ message ListBooksRequest {
 // Response message to ListBooks method.
 message ListBooksResponse {
     // The books on the shelf.
-    repeated Book books = 1;
+    repeated CreateBookResponse books = 1;
 }
 
 // Request message for CreateBook method.
@@ -50,7 +61,7 @@ message CreateBookRequest {
     // The ID of the shelf on which to create a book.
     int64 shelf = 1;
     // A book resource to create on the shelf.
-    Book book = 2;
+    CreateBookResponse book = 2;
 }
 
 // Request message for GetBook method.

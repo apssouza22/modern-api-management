@@ -16,14 +16,14 @@ code style
 We are going to guarantee back-compatibility of the API by using the project Buf to ensure that the API 
 changes doesn't break the existing contract.
 
-# Docker image
+# Use the builtDocker image
 
 ```
-docker build . -f assets/Dockerfile -t apssouza22/proto-api-manager
-docker run -it -v "$(pwd):/workspace" -v "$HOME"/.m2:/root/.m2  -w /workspace   apssouza22/proto-api-manager
+docker run -it -v "$(pwd):/workspace" -v "$HOME"/.m2:/root/.m2  -w /workspace   apssouza/proto-api-manager
 make generate
 make install
-``` 
+```
+To build a local image `docker build . -f assets/Dockerfile -t apssouza/proto-api-manager` 
 
 
 # OpenAPI with Swagger

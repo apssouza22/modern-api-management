@@ -1,0 +1,12 @@
+lint:
+  use:
+    - DEFAULT
+    - COMMENTS
+
+breaking:
+  use:
+    - FILE
+
+build:
+  roots:
+    - protos/local
