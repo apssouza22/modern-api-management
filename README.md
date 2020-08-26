@@ -1,32 +1,64 @@
-# Protobuf-manage-api
+# Modern API management
+This project try to provide a modern approach to manage APIs. The project address the following challenges:
+- Contract definition using Protobuf
+- Contract compatibility enforcement 
+- Contract versioning
+- OpenAPI definition generation
+- Stub generation in different languages
+- Client SDK generation in different languages
+- Swagger-UI to display the HTTP API 
+- ETC
 
 ## Stub generation
-We are going to generate stub code to different languages(Java, Golang)
+Generate stub code to different languages(Java, Golang)
+
+```
+./bin/go-gen.sh
+./bin/java-gen.sh
+```
 
 ## Code distribution
-We are going to distribute the API generated code to different languages(Java, Golang)
+Share the API generated code to different languages(Java, Golang)
 
+```
+./bin/go-deploy.sh
+./bin/java-package.sh
+./bin/java-install.sh
+```
 ## OpenAPI definition 
-We reads protobuf service definitions and generates service definition files.
+Reads protobuf service definitions and generates service definition files.
 These files can then be used by the Swagger-UI project to display the API and Swagger-Codegen to generate clients in various languages.
 
+```
+./bin/swagger-gen.sh
+./bin/swagger-assets-package.sh
+```
+
 ## HTTP Client SDKs
-We use the service definition files along with Swagger-Codegen to generate HTTP clients for the service in Java and Golang.
+Use the service definition files along with Swagger-Codegen to generate HTTP clients for the service in Java and Golang.
+
+```
+./bin/gen-sdk-clients.sh
+```
 
 ## HTTP Client UI
-We use the service definition files along with Swagger-UI project to display the HTTP API version
+Use the service definition files along with Swagger-UI project to display the HTTP API version
 
 ### Swagger-UI
-- Run the services/apihttp/main.go
+- Run the services/swaggerui/main.go
 - Access https://localhost:8081/?def-file=./definition/book/v1/books.swagger.json
 
 ## Quality assurance 
-We guarantee the quality of the API by using the project Buf to ensure that the API follows a 
+Guarantee the quality of the API by using the project Buf to ensure that the API follows a 
 code style
 
+This is done using Github actions. Check out the `.github/workflows/ci.yml`
+
 ## Back compatibility
-We guarantee back-compatibility of the API by using the project Buf to ensure that the API 
+Guarantee back-compatibility of the API by using the project Buf to ensure that the API 
 changes doesn't break the existing contract.
+
+This is done using Github actions. Check out the `.github/workflows/ci.yml`
 
 ## Use the built Docker image
 We are sharing a docker image with everything required in this project
@@ -39,5 +71,7 @@ make install
 
 If you prefer to build a local image `docker build . -f assets/Dockerfile -t apssouza/proto-api-manager` 
 
-
+## Microservice example
+Check out 2 microservices examples inside `./services` to get inspired. Book microservice is in Golang and
+Shelf microservice is in Java 
 
