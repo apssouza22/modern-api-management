@@ -1,12 +1,13 @@
-type: google.api.http
+#  https://cloud.google.com/endpoints/docs/grpc/grpc-service-config
+type: google.api.Service
 config_version: 3
 
 http:
   rules:
-    - selector: book.v1.Bookstore.ListBooks
+    - selector: book.v1.BookstoreService.ListBooks
       post: '/apis/v1/Bookstore.ListBooks'
       body: "*"
 
-    - selector: book.v1.Bookstore.CreateBook
+    - selector: book.v1.ShelfService.CreateBook
       post: '/apis/v1/Bookstore.CreateBook'
       body: "*"
