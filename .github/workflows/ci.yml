@@ -2,14 +2,14 @@ name: protobuf
 on: [pull_request]
 jobs:
   protos-check:
-    name: Build
+    name: Protobuf checks
     runs-on: ubuntu-latest
     container: bufbuild/buf
     steps:
       - name: Check out code
         uses: actions/checkout@v1
       - name: Checking code style
-        run: buf check lint --input-config protos/buf.yaml
+        run: buf check lint --input-config buf.yaml
       - name: Checking breaking changes
         run: |
           git fetch --depth 1 origin master
@@ -17,20 +17,21 @@ jobs:
             echo "Creating master branch"
             git branch master origin/master
           fi
-          CURRENT_BRANCH=$(git branch --show-current)
+          git checkout -b pr
           git checkout master
+          echo "Building image from master to compare"
           buf image build -o image.bin
-          git checkout $CURRENT_BRANCH
+          git checkout pr
+          echo "Checking breaking changes on branch pr"
           buf check breaking --against-input image.bin
   generate:
-    name: Regenerate files
+    name: Generate files
     runs-on: ubuntu-latest
     container: 
       image: apssouza/proto-api-manager
     steps:
     - name: Check out code
       uses: actions/checkout@v1
-    - name: Regenerate files
+    - name: Make generate
       run: make generate
-    - name: Check for a diff
-      run: git diff --exit-code
+
