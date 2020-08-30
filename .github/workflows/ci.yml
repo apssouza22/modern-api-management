@@ -9,7 +9,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v1
       - name: Checking code style
-        run: buf check lint --input-config protos/local/buf.yaml
+        run: buf check lint --input-config protos/buf.yaml
       - name: Checking breaking changes
         run: |
           git fetch --depth 1 origin master
@@ -17,7 +17,7 @@ jobs:
             echo "Creating master branch"
             git branch master origin/master
           fi
-#          buf check breaking --against-input .git#branch=master --input-config protos/local/buf.yaml
+          buf check breaking --against-input .git#branch=master --input-config protos/buf.yaml
   generate:
     name: Regenerate files
     runs-on: ubuntu-latest
