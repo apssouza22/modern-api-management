@@ -9,7 +9,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v1
       - name: Checking code style
-        run: buf check lint --input-config protos/buf.yaml
+        run: buf check lint --input-config buf.yaml
       - name: Checking breaking changes
         run: |
           git fetch --depth 1 origin master
