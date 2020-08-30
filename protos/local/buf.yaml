@@ -2,11 +2,16 @@ lint:
   use:
     - DEFAULT
     - COMMENTS
-
+  ignore:
+    - google
+    - protoc-gen-openapiv2
 breaking:
   use:
     - FILE
-
+  ignore:
+    - google
+    - protoc-gen-openapiv2
+#
 build:
   roots:
     - protos/local
