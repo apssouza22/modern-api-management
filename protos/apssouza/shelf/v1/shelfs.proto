@@ -1,7 +1,7 @@
 
 syntax = "proto3";
 
-package shelf.v1;
+package apssouza.shelf.v1;
 
 import "protoc-gen-openapiv2/options/annotations.proto";
 
@@ -17,7 +17,7 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
         title: "Shelf service definition";
     };
     schemes: [HTTPS, HTTP];
-    host: "my.hostname.gov";
+    host: "localhost:50052";
 };
 
 

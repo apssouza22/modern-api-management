@@ -3,14 +3,13 @@ module github.com/apssouza/openapi
 go 1.14
 
 require (
-	github.com/apssouza22/protobuf-gen-code v0.0.1
+	github.com/apssouza22/protobuf-gen-code v0.0.5
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
 	github.com/golang/protobuf v1.4.2
 	github.com/google/go-cmp v0.4.1 // indirect
 	github.com/gorilla/mux v1.7.4
 	github.com/rakyll/statik v0.1.7
 	github.com/sirupsen/logrus v1.6.0
-	gitlab.com/deem-devops/phoenix/apis-go v1.0.98 // indirect
 	gitlab.com/deem-devops/phoenix/common-utils v1.0.24 // indirect
 	gitlab.com/deem-devops/phoenix/grpc-go v1.0.14
 	golang.org/x/net v0.0.0-20200625001655-4c5254603344 // indirect

@@ -4,10 +4,10 @@ config_version: 3
 
 http:
   rules:
-    - selector: book.v1.BookstoreService.ListBooks
+    - selector: apssouza.book.v1.BookstoreService.ListBooks
       post: '/apis/v1/Bookstore.ListBooks'
       body: "*"
 
-    - selector: shelf.v1.ShelfService.CreateShelf
+    - selector: apssouza.shelf.v1.ShelfService.CreateShelf
       post: '/apis/v1/Bookstore.CreateBook'
       body: "*"

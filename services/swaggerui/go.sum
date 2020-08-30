@@ -17,10 +17,16 @@ github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802/go.mod h1:IVnqGOEym
 github.com/OneOfOne/xxhash v1.2.2/go.mod h1:HSdplMjZKSmBqAxg5vPj2TmRDmfkzw+cTzAElWljhcU=
 github.com/alecthomas/template v0.0.0-20160405071501-a0175ee3bccc/go.mod h1:LOuyumcjzFXgccqObfd/Ljyb9UuFJ6TxHnclSeseNhc=
 github.com/alecthomas/units v0.0.0-20151022065526-2efee857e7cf/go.mod h1:ybxpYRFXyAe+OPACYpWeL0wqObRcbAqCMya13uyzqw0=
-github.com/apssouza22/protobuf-gen-code v0.0.0-20200814150950-8d88a36b0a43 h1:PAJGG1HgG6JIlQHMBDIMJWylMT/nACDsqM0AbdSfoaY=
-github.com/apssouza22/protobuf-gen-code v0.0.0-20200814150950-8d88a36b0a43/go.mod h1:EBg0k/7XeiHzx/+vcODQ/BZ3uC3UuFfZV6L/yk2z3Gw=
 github.com/apssouza22/protobuf-gen-code v0.0.1 h1:hbLOIohxdSyb4fHWwDB6ZuSzr0F9t7w1JQW1WF2UYhA=
 github.com/apssouza22/protobuf-gen-code v0.0.1/go.mod h1:EBg0k/7XeiHzx/+vcODQ/BZ3uC3UuFfZV6L/yk2z3Gw=
+github.com/apssouza22/protobuf-gen-code v0.0.2 h1:O+tMIdGIR7CWRYrsGfhJJnGohrIgck5hH/AaNbwmKG0=
+github.com/apssouza22/protobuf-gen-code v0.0.2/go.mod h1:EBg0k/7XeiHzx/+vcODQ/BZ3uC3UuFfZV6L/yk2z3Gw=
+github.com/apssouza22/protobuf-gen-code v0.0.3 h1:1qDUyQiJZzzL3dgEWLB56uQjMp37BklJXUKz6gknADc=
+github.com/apssouza22/protobuf-gen-code v0.0.3/go.mod h1:EBg0k/7XeiHzx/+vcODQ/BZ3uC3UuFfZV6L/yk2z3Gw=
+github.com/apssouza22/protobuf-gen-code v0.0.4 h1:Bl4UMRCoiX/OeRRiFPzh/vxb28Wa+nLqXUbmspu0Lz4=
+github.com/apssouza22/protobuf-gen-code v0.0.4/go.mod h1:EBg0k/7XeiHzx/+vcODQ/BZ3uC3UuFfZV6L/yk2z3Gw=
+github.com/apssouza22/protobuf-gen-code v0.0.5 h1:p4zzxH8yrmdSX+nWN+h0hP4IDytEz42BS6Y9POLoq1A=
+github.com/apssouza22/protobuf-gen-code v0.0.5/go.mod h1:EBg0k/7XeiHzx/+vcODQ/BZ3uC3UuFfZV6L/yk2z3Gw=
 github.com/armon/circbuf v0.0.0-20150827004946-bbbad097214e/go.mod h1:3U/XgcO3hCbHZ8TKRvWD2dDTCfh9M9ya+I9JpbB7O8o=
 github.com/armon/consul-api v0.0.0-20180202201655-eb2c6b5be1b6/go.mod h1:grANhF5doyWs3UAsr3K4I6qtAmlQcZDesFNEHPZAzj8=
 github.com/armon/go-metrics v0.0.0-20180917152333-f0300d1749da/go.mod h1:Q73ZrmVTwzkszR9V5SSuryQ31EELlFMUz1kKyl939pY=
@@ -222,8 +228,6 @@ github.com/xiang90/probing v0.0.0-20190116061207-43a291ad63a2/go.mod h1:UETIi67q
 github.com/xordataexchange/crypt v0.0.3-0.20170626215501-b2862e3d0a77/go.mod h1:aYKd//L2LvnjZzWKhF00oedf4jCCReLcmhLdhm1A27Q=
 gitlab.com/deem-devops/phoenix/apis-go v1.0.57/go.mod h1:E/9nK/sQwjAcVw9jtcMwcLUDSXCRaSPmqzzyTSzNapk=
 gitlab.com/deem-devops/phoenix/apis-go v1.0.83/go.mod h1:E/9nK/sQwjAcVw9jtcMwcLUDSXCRaSPmqzzyTSzNapk=
-gitlab.com/deem-devops/phoenix/apis-go v1.0.98 h1:WGGOOE2XL3YXNJoOmBNW6LJV8ewlgs7Jcvqo1opGcw8=
-gitlab.com/deem-devops/phoenix/apis-go v1.0.98/go.mod h1:E9i3vRnz+P6ekM9oc7lhddG86RMbk1jW4Hq2TQyQUks=
 gitlab.com/deem-devops/phoenix/common-utils v1.0.20/go.mod h1:9mVaMyOTRSvLVW3ULtoHHXoPIFqbLooQ6SMKf+8x1YA=
 gitlab.com/deem-devops/phoenix/common-utils v1.0.24 h1:gDSlRq2Jnarpc/4bzC5465ndryGRemu1dHLAPfL2NrM=
 gitlab.com/deem-devops/phoenix/common-utils v1.0.24/go.mod h1:28SZ6i6CJbRqGkExOzH6UYVtFsFLLWsQrF6+bt4HuAs=

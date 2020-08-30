@@ -17,7 +17,6 @@ for proto in $(find "$PROTO_ROOT" -name "*.proto"); do
   echo "Generating Go code for $proto"
   protoc \
     -I "$PROTO_ROOT" \
-    -I "$ROOT" \
     --go_out=plugins=grpc:"$GEN_PATH" \
     "$proto"
 done
