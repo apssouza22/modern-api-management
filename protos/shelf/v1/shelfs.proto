@@ -40,8 +40,6 @@ message ListShelvesRequest {}
 
 // A shelf resource.
 message GetShelfResponse {
-    // A unique shelf id.
-    int64 id = 1;
     // A theme of the shelf (fiction, poetry, etc).
     string theme = 2;
 }
