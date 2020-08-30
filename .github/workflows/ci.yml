@@ -22,8 +22,7 @@ jobs:
           echo "Building image from master to compare"
           buf image build -o image.bin
           git checkout pr
-          CURRENT_BRANCH=$(git branch --show-current)
-          echo "Checking breaking changes on branch $CURRENT_BRANCH"
+          echo "Checking breaking changes on branch pr"
           buf check breaking --against-input image.bin
   generate:
     name: Regenerate files
