@@ -2,3 +2,4 @@
 gen/
 /docs/swagger/definition/
 /services/shelf/target/
+image.bin

@@ -17,7 +17,11 @@ jobs:
             echo "Creating master branch"
             git branch master origin/master
           fi
-          buf check breaking --against-input .git#branch=master --input-config protos/buf.yaml
+          CURRENT_BRANCH=$(git branch --show-current)
+          git checkout master
+          buf image build -o image.bin
+          git checkout $CURRENT_BRANCH
+          buf check breaking --against-input image.bin
   generate:
     name: Regenerate files
     runs-on: ubuntu-latest
