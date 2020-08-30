@@ -9,6 +9,25 @@ This project try to provide a modern approach to manage APIs. The project addres
 - Swagger-UI to display the HTTP API 
 - ETC
 
+## Get started
+
+```
+make generate
+make install
+```
+
+### Use the built Docker image
+We are sharing a docker image with everything required in this project
+
+```
+docker run -it -v "$(pwd):/workspace" -v "$HOME"/.m2:/root/.m2  -w /workspace   apssouza/proto-api-manager
+make generate
+make install
+```
+
+If you prefer to build a local image `docker build . -f assets/Dockerfile -t apssouza/proto-api-manager` 
+
+
 ## Stub generation
 Generate stub code to different languages(Java, Golang)
 

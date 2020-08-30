@@ -3,10 +3,23 @@ syntax = "proto3";
 
 package shelf.v1;
 
+import "protoc-gen-openapiv2/options/annotations.proto";
+
 option java_multiple_files = true;
 option java_outer_classname = "BookProto";
 option java_package = "com.apssouza.bookstore.shelf.v1";
 option go_package = "shelf/v1;shelfv1";
+
+// These annotations are used when generating the OpenAPI file.
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+    info: {
+        version: "1.0";
+        title: "Shelf service definition";
+    };
+    schemes: [HTTPS, HTTP];
+    host: "my.hostname.gov";
+};
+
 
 // This API manages shelves resources.
 service ShelfService {

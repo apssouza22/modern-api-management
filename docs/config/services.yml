@@ -1,5 +1,5 @@
 #  https://cloud.google.com/endpoints/docs/grpc/grpc-service-config
-type: google.api.Service
+type: google.api.http
 config_version: 3
 
 http:
@@ -8,6 +8,6 @@ http:
       post: '/apis/v1/Bookstore.ListBooks'
       body: "*"
 
-    - selector: book.v1.ShelfService.CreateBook
+    - selector: shelf.v1.ShelfService.CreateShelf
       post: '/apis/v1/Bookstore.CreateBook'
       body: "*"
