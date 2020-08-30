@@ -6,7 +6,7 @@ pwd="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 ROOT="$pwd/.."
 
 GEN_PATH=$ROOT/gen
-PROTO_ROOT="$ROOT/protos/local"
+PROTO_ROOT="$ROOT/protos"
 MODULES_FILE=$PROTO_ROOT/modules
 
 rm -rf "$GEN_PATH/java"
@@ -39,16 +39,14 @@ function generateCode() {
     echo "Generating Java code for $proto"
 
     protoc \
-      -I "$ROOT"/protos/local \
-      -I "$ROOT"/protos/thirdparty/grpc-gateway \
-      -I "$ROOT"/protos/thirdparty/googleapis \
+      -I "$ROOT"/protos \
+      -I "$ROOT" \
       --java_out="$javaOut" \
       "$proto"
 
     protoc \
-      -I "$ROOT"/protos/local \
-      -I "$ROOT"/protos/thirdparty/grpc-gateway \
-      -I "$ROOT"/protos/thirdparty/googleapis \
+      -I "$ROOT"/protos \
+      -I "$ROOT" \
       --grpc-java_out="$javaOut" \
       --plugin=protoc-gen-grpc-java=/usr/local/bin/protoc-gen-grpc-java \
       "$proto"

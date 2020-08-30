@@ -12,6 +12,6 @@ breaking:
     - google
     - protoc-gen-openapiv2
 #
-build:
-  roots:
-    - protos/local
+#build:
+#  roots:
+#    - protos/local

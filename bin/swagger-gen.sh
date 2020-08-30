@@ -14,8 +14,6 @@ for proto in $(find "$PROTO_ROOT" -name "*.proto"); do
 
   protoc \
     -I "$PROTO_ROOT" \
-    -I "$ROOT"/protos/thirdparty/grpc-gateway/ \
-    -I "$ROOT"/protos/thirdparty/googleapis \
     --openapiv2_out=grpc_api_configuration="$ROOT/docs/config/services.yml":"$ROOT/gen/swagger" \
     "$proto"
 done
