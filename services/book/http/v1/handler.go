@@ -1,7 +1,7 @@
-package book
+package httpv1
 
 import (
-	"github.com/apssouza/openapi/httputil"
+	"github.com/apssouza/bookservice/httputil"
 	"github.com/apssouza22/protobuf-gen-code/book/v1"
 	"github.com/golang/protobuf/proto"
 	"google.golang.org/grpc"
@@ -9,13 +9,13 @@ import (
 )
 
 func GetServiceReqHandler(conn *grpc.ClientConn) BookStoreService {
-	client := bookv1.NewBookstoreClient(conn)
+	client := bookv1.NewBookstoreServiceClient(conn)
 	return BookStoreService{client: client}
 }
 
 type BookStoreService struct {
-	client bookv1.BookstoreClient
-	bookv1.BookstoreServer
+	client bookv1.BookstoreServiceClient
+	bookv1.BookstoreServiceServer
 }
 
 // Creates a new book.
