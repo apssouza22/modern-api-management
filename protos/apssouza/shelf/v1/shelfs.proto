@@ -17,7 +17,7 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
         title: "Shelf service definition";
     };
     schemes: [HTTPS, HTTP];
-    host: "localhost:50052";
+    host: "localhost:8083";
 };
 
 

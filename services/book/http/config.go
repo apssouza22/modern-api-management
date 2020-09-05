@@ -12,10 +12,10 @@ import (
 	"strings"
 )
 
-const httpAddr = "0.0.0.0:8082"
-const grpcAddr = "0.0.0.0:50052"
+const httpAddr = "localhost:50051"
+const grpcAddr = "localhost:50053"
 
-func StartHTTPServer(builder grpc_client.GrpcClientBuilder) {
+func StartHTTPServer(builder grpc_client.GrpcClientConnBuilder) {
 	conn, err := builder.GetConn(grpcAddr)
 	if err != nil {
 		logrus.Fatal(err)
@@ -29,16 +29,15 @@ func StartHTTPServer(builder grpc_client.GrpcClientBuilder) {
 	gwServer.TLSConfig = &tls.Config{
 		Certificates: []tls.Certificate{certtls.Cert},
 	}
-	logrus.Infof("Http server started on port 8081")
+	logrus.Infof("Http server started on %s", httpAddr)
 	gwServer.ListenAndServeTLS("", "")
-
 }
 
 func getSvcReqHandler(conn *grpc.ClientConn) *mux.Router {
 	router := mux.NewRouter().StrictSlash(true)
 	apiHandler := httpv1.GetServiceReqHandler(conn)
-	router.HandleFunc("/apis/v1/bookStore.ListBooks", apiHandler.ListBooks).Methods("POST")
-	router.HandleFunc("/apis/v1/bookStore.CreateBook", apiHandler.CreateBook).Methods("POST")
+	router.HandleFunc("/apis/v1/BookStore.ListBooks", apiHandler.ListBooks).Methods("POST")
+	router.HandleFunc("/apis/v1/BookStore.CreateBook", apiHandler.CreateBook).Methods("POST")
 	return router
 }
 

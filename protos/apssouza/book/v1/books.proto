@@ -17,7 +17,7 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
         title: "Book service definition";
     };
     schemes: [HTTPS, HTTP];
-    host: "localhost:50051";
+    host: "localhost:8082";
 };
 
 // This API manages  books resources.
