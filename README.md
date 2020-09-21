@@ -17,7 +17,7 @@ make install
 ```
 
 ### Use the built Docker image
-We are sharing a docker image with everything required in this project
+We are sharing a docker image with everything required by this project
 
 ```
 docker run -it -v "$(pwd):/workspace" -v "$HOME"/.m2:/root/.m2  -w /workspace   apssouza/proto-api-manager
@@ -79,16 +79,8 @@ changes doesn't break the existing contract.
 
 This is done using Github actions. Check out the `.github/workflows/ci.yml`
 
-## Use the built Docker image
-We are sharing a docker image with everything required in this project
-
-```
-docker run -it -v "$(pwd):/workspace" -v "$HOME"/.m2:/root/.m2  -w /workspace   apssouza/proto-api-manager
-make generate
-make install
-```
-
-If you prefer to build a local image `docker build . -f assets/Dockerfile -t apssouza/proto-api-manager` 
+## API management guideline 
+Check out a [guideline](https://github.com/apssouza22/modern-api-management/tree/master/guidelines) to help manage the APIs in a microservice environment
 
 ## Microservice example
 Check out 2 microservices examples inside `./services` to get inspired. Book microservice is in Golang and
