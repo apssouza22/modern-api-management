@@ -1,12 +1,16 @@
 # Modern API management
-This project try to provide a modern approach to manage APIs. The project address the following challenges:
-- Contract definition using Protobuf
+This project tries to provide a modern approach to manage APIs 
+combining Protobuf and OpenAPI specification.
+ 
+The project tries to address the following challenges:
+- Contract definitions
 - Contract compatibility enforcement 
 - Contract versioning
 - OpenAPI definition generation
-- Stub generation in different languages
-- Client SDK generation in different languages
-- Swagger-UI to display the HTTP API 
+- Stub generation to different languages
+- Client SDK generation to different languages
+- Swagger-UI to display the HTTP API
+- API management guideline 
 - ETC
 
 ## Get started
