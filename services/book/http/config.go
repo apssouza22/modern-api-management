@@ -9,7 +9,6 @@ import (
 	"github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
 	"net/http"
-	"strings"
 )
 
 const httpAddr = "localhost:50051"
@@ -20,32 +19,25 @@ func StartHTTPServer(builder grpc_client.GrpcClientConnBuilder) {
 	if err != nil {
 		logrus.Fatal(err)
 	}
-	searchHandler := getSvcReqHandler(conn)
+	router := mux.NewRouter().StrictSlash(true)
+	setEndpointHandlers(conn, router)
+	listenAndServ(router)
+}
 
+func listenAndServ(router *mux.Router) {
 	gwServer := &http.Server{
 		Addr:    httpAddr,
-		Handler: getRequestHandler(searchHandler),
+		Handler: router,
 	}
 	gwServer.TLSConfig = &tls.Config{
 		Certificates: []tls.Certificate{certtls.Cert},
 	}
-	logrus.Infof("Http server started on %s", httpAddr)
+	logrus.Infof("Http server started on port %s", httpAddr)
 	gwServer.ListenAndServeTLS("", "")
 }
 
-func getSvcReqHandler(conn *grpc.ClientConn) *mux.Router {
-	router := mux.NewRouter().StrictSlash(true)
+func setEndpointHandlers(conn *grpc.ClientConn, router *mux.Router) {
 	apiHandler := httpv1.GetServiceReqHandler(conn)
 	router.HandleFunc("/apis/v1/BookStore.ListBooks", apiHandler.ListBooks).Methods("POST")
 	router.HandleFunc("/apis/v1/BookStore.CreateBook", apiHandler.CreateBook).Methods("POST")
-	return router
-}
-
-func getRequestHandler(searchHandler http.Handler) http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		if strings.HasPrefix(r.URL.Path, "/apis") {
-			searchHandler.ServeHTTP(w, r)
-			return
-		}
-	}
 }
