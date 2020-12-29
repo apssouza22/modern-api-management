@@ -6,7 +6,7 @@
 
     <groupId>com.apssouza.api</groupId>
     <artifactId>PACKAGE_NAME</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
 
     <properties>
         <spring-boot-maven-plugin.version>2.1.6.RELEASE</spring-boot-maven-plugin.version>
@@ -49,16 +49,16 @@
         </dependency>
 
     </dependencies>
-    <distributionManagement>
-        <repository>
-            <id>company-artifactory-central</id>
-            <name>artifactory.company.com-releases</name>
-            <url>https://artifactory.company.com/artifactory/libs-release</url>
-        </repository>
-        <snapshotRepository>
-            <id>company-artifactory-snapshots</id>
-            <name>artifactory.company.com-snapshots</name>
-            <url>https://artifactory.company.com/artifactory/libs-snapshot</url>
-        </snapshotRepository>
-    </distributionManagement>
+<!--    <distributionManagement>-->
+<!--        <repository>-->
+<!--            <id>company-artifactory-central</id>-->
+<!--            <name>artifactory.company.com-releases</name>-->
+<!--            <url>https://artifactory.company.com/artifactory/libs-release</url>-->
+<!--        </repository>-->
+<!--        <snapshotRepository>-->
+<!--            <id>company-artifactory-snapshots</id>-->
+<!--            <name>artifactory.company.com-snapshots</name>-->
+<!--            <url>https://artifactory.company.com/artifactory/libs-snapshot</url>-->
+<!--        </snapshotRepository>-->
+<!--    </distributionManagement>-->
 </project>

@@ -23,7 +23,6 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-    <grpc.version>1.21.0</grpc.version>
     <junit-engine.version>5.1.0</junit-engine.version>
     <maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
     <maven-surefire-plugin.version>2.22.0</maven-surefire-plugin.version>
@@ -34,7 +33,7 @@
       <dependency>
         <groupId>io.grpc</groupId>
         <artifactId>grpc-bom</artifactId>
-        <version>${grpc.version}</version>
+        <version>1.31.1</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -55,6 +54,11 @@
       <groupId>com.apssouza.api</groupId>
       <artifactId>swagger-assets</artifactId>
       <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>com.apssouza.api</groupId>
+      <artifactId>shelf</artifactId>
+      <version>1.0.1-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>com.apssouza.grpc</groupId>

@@ -9,5 +9,5 @@ http:
       body: "*"
 
     - selector: apssouza.shelf.v1.ShelfService.CreateShelf
-      post: '/apis/v1/Bookstore.CreateBook'
+      post: '/apis/v1/ShelfService.CreateShelf'
       body: "*"

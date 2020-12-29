@@ -6,7 +6,7 @@ pwd="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 ROOT="$pwd/.."
 
 GEN_PATH=$ROOT/gen/java
-PROTO_ROOT="$ROOT/protos/local"
+PROTO_ROOT="$ROOT/protos"
 MODULES_FILE=$PROTO_ROOT/modules
 
 function installModule() {

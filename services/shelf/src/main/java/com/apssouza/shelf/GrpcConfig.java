@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+import com.apssouza.api.bookstore.shelf.v1.ShelfServiceGrpc;
 import com.apssouza.grpc.server.GrpcServer;
 import com.apssouza.grpc.server.GrpcServerBuilder;
 import com.apssouza.grpc.server.HealthCheckService;
@@ -17,6 +18,8 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.grpc.BindableService;
+import io.grpc.ManagedChannel;
+import io.grpc.ManagedChannelBuilder;
 import io.grpc.ServerInterceptor;
 
 @Configuration
@@ -37,6 +40,16 @@ public class GrpcConfig {
                 .maxConnectionAge(5, TimeUnit.MINUTES)
                 .interceptors(getInterceptors())
                 .build();
+    }
+
+    @Bean
+    ShelfServiceGrpc.ShelfServiceBlockingStub grpcClient(@Value("${grpc.server.port}") Integer port) {
+        ManagedChannel channel = ManagedChannelBuilder
+                .forAddress("localhost", port)
+                .usePlaintext()
+                .build();
+
+        return ShelfServiceGrpc.newBlockingStub(channel);
     }
 
     private static List<ServerInterceptor> getInterceptors() {

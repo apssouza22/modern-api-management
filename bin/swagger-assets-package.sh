@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-######## Package the required Swagger assets to easily distribute to different languages ######
+######## Package the required Swagger assets to easily distribute the web app to different languages ######
 
 # Getting the script location path
 pwd="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
