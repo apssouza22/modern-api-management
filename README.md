@@ -88,5 +88,5 @@ Check out a [guideline](https://github.com/apssouza22/modern-api-management/tree
 
 ## Microservice example
 Check out 2 microservices examples inside `./services` to get inspired. Book microservice is in Golang and
-Shelf microservice is in Java 
+Shelf microservice is in Java.
 

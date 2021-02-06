@@ -18,6 +18,7 @@ RUN apt-get update && \
 RUN curl https://repo1.maven.org/maven2/io/grpc/protoc-gen-grpc-java/1.27.2/protoc-gen-grpc-java-1.27.2-linux-x86_64.exe -o  /usr/local/bin/protoc-gen-grpc-java && \
     chmod +x /usr/local/bin/protoc-gen-grpc-java
 
+## Golang
 RUN env GO111MODULE=on go get \
     		github.com/golang/protobuf/protoc-gen-go \
     		github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway \
