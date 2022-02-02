@@ -18,6 +18,14 @@ RUN apt-get update && \
 RUN curl https://repo1.maven.org/maven2/io/grpc/protoc-gen-grpc-java/1.27.2/protoc-gen-grpc-java-1.27.2-linux-x86_64.exe -o  /usr/local/bin/protoc-gen-grpc-java && \
     chmod +x /usr/local/bin/protoc-gen-grpc-java
 
+## Node js
+RUN curl -sL https://deb.nodesource.com/setup_14.x -o  /usr/local/bin/node-install && \
+    chmod +x /usr/local/bin/node-install && \
+    /usr/local/bin/node-install && \
+    apt-get install nodejs && \
+    npm config set unsafe-perm true && \
+    npm install --silent -g grpc-tools grpc_tools_node_protoc_ts protoc-gen-grpc
+
 ## Golang
 RUN env GO111MODULE=on go get \
     		github.com/golang/protobuf/protoc-gen-go \
