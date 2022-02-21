@@ -43,11 +43,12 @@ If you prefer to build a local image `docker build . -f assets/Dockerfile -t aps
 
 
 ## Stub generation
-Generate stub code to different languages(Java, Golang)
+Generate stub code to different languages(Javascript, Java, Golang)
 
 ```
 ./bin/go-gen.sh
 ./bin/java-gen.sh
+./bin/js-gen.sh ./protos 0.0.12
 ```
 
 ## Code distribution
@@ -55,6 +56,7 @@ Share the API generated code to different languages(Java, Golang)
 
 ```
 ./bin/go-deploy.sh
+./bin/js-deploy.sh ./protos
 ./bin/java-package.sh
 ./bin/java-install.sh
 ```

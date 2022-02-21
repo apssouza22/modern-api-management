@@ -4,7 +4,7 @@ function usage() {
     echo "Generate Java files into gen/java directory
 Usage: $0 apis-dir version
 
-Example: $0 ~/my/path/apis 0.0.12"
+Example: $0 ./protos 0.0.12"
 }
 
 if [ "$#" -ge 2 ]; then
@@ -38,24 +38,43 @@ function buildModule() {
   modulePath="$1"
   moduleName="$2"
 
-  JAVA_PATH="$GEN_PATH/js/$moduleName"
+  JS_PATH="$GEN_PATH/js/$moduleName"
 
-  mkdir -p "$JAVA_PATH"
+  mkdir -p "$JS_PATH"
+
+  generatePackageJson $modulePath $moduleName
+
+  generateCode "$PROTO_ROOT/$modulePath/*.proto" "$JS_PATH"
+
+}
+
+
+function generatePackageJson(){
+  modulePath="$1"
+  moduleName="$2"
 
   echo "Generating dependencies for \"$PROTO_ROOT/$modulePath\""
-  # first, generate the dependencies
-  while read proto; do
-    generateCode "$PROTO_ROOT/$proto" "$JAVA_PATH"
+
+  dependencies=''
+  while read protoDir; do
+    echo "dependencies ${modules[$protoDir]}"
+    # Avoiding duplicated dependencies
+    if [[ "$dependencies" != *"${modules[$protoDir]}"* ]]; then
+      dependencies="$dependencies,
+      \"@deem/${modules[$protoDir]}\": \"^$version\""
+    fi
   done <"$PROTO_ROOT/$modulePath/dependencies"
 
-  # then, generate the module code itself
-  generateCode "$PROTO_ROOT/$modulePath/protos/*.proto" "$JAVA_PATH"
+  dependencies=${dependencies:1} # remove , from the beginning of string
 
-  cat >$JAVA_PATH/package.json <<EOF
+  cat >$JS_PATH/package.json <<EOF
   {
     "name": "@deem/${moduleName#v}",
     "version": "${version#v}",
-    "description": "Generated protobuf types for phoenix microservices"
+    "description": "Generated protobuf types for phoenix microservices",
+    "dependencies": {
+      ${dependencies#v}
+    }
   }
 EOF
 
@@ -82,7 +101,24 @@ function generateCode() {
   done
 }
 
+declare -A modules=()
+
+# This is only for back compatibility.
+# Today dependencies files contains proto names instead of modules name
+# Mapping protos directory to module names
+function mapModules(){
+  while read module; do
+      buildPath="$(echo $module | cut -d' ' -f1)"
+      moduleName="$(echo $module | cut -d' ' -f2)"
+      modules["$buildPath"]="$moduleName"
+      echo $buildPath
+    done <"$MODULES_FILE"
+}
+
+
 function buildAll() {
+  mapModules
+
   echo "Buidling service's protocol buffers"
 
   while read module; do
