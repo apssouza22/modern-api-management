@@ -43,9 +43,8 @@ function buildModule() {
   mkdir -p "$JS_PATH"
 
   generatePackageJson $modulePath $moduleName
-
   generateCode "$PROTO_ROOT/$modulePath/*.proto" "$JS_PATH"
-
+  replaceRelativeImports$modulePath $moduleName
 }
 
 
@@ -99,6 +98,33 @@ function generateCode() {
       "$proto"
 
   done
+}
+
+
+# Replacing relative dependencies import by module names. Ex ../common/v1 -> @common-v1
+function replaceRelativeImports(){
+  modulePath="$1"
+  moduleName="$2"
+
+  DEPENDENCIES="$PROTO_ROOT/$modulePath/dependencies"
+  if [ ! -f "$DEPENDENCIES" ]; then
+     return
+  fi
+  echo "Replacing relative imports for \"$PROTO_ROOT/$modulePath\" files"
+  while read proto; do
+    directory=$(dirname "$proto")
+    moduleDepName="${modules[$directory]}"
+    echo "Replacing relative imports for ./$directory  by  @$moduleDepName"
+    FILES="$JS_PATH/$modulePath/*"
+    for FILE in $FILES; do
+      if [ -f "$FILE" ]; then
+        sed -i "s|\.\/${directory}|@${moduleDepName}/${directory}|g" "${FILE}"
+        sed -i "s|\"\..*@|\"@|g" "${FILE}" # removing "../../ until find @
+        sed -i "s|'\..*@|'@|g" "${FILE}" # removing '../../ until find @
+      fi
+    done
+  done < "$DEPENDENCIES"
+
 }
 
 declare -A modules=()
