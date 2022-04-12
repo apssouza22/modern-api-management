@@ -44,7 +44,7 @@ function buildModule() {
 
   generatePackageJson $modulePath $moduleName
   generateCode "$PROTO_ROOT/$modulePath/*.proto" "$JS_PATH"
-  replaceRelativeImports$modulePath $moduleName
+  replaceRelativeImports $modulePath $moduleName
 }
 
 
@@ -60,7 +60,7 @@ function generatePackageJson(){
     # Avoiding duplicated dependencies
     if [[ "$dependencies" != *"${modules[$protoDir]}"* ]]; then
       dependencies="$dependencies,
-      \"@deem/${modules[$protoDir]}\": \"^$version\""
+      \"@${modules[$protoDir]}\": \"^$version\""
     fi
   done <"$PROTO_ROOT/$modulePath/dependencies"
 
@@ -68,7 +68,7 @@ function generatePackageJson(){
 
   cat >$JS_PATH/package.json <<EOF
   {
-    "name": "@deem/${moduleName#v}",
+    "name": "@${moduleName#v}",
     "version": "${version#v}",
     "description": "Generated protobuf types for phoenix microservices",
     "dependencies": {

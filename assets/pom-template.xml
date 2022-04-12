@@ -6,48 +6,14 @@
 
     <groupId>com.apssouza.api</groupId>
     <artifactId>PACKAGE_NAME</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
-
-    <properties>
-        <spring-boot-maven-plugin.version>2.1.6.RELEASE</spring-boot-maven-plugin.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>8</java.version>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <grpc.version>1.31.1</grpc.version>
-    </properties>
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>io.grpc</groupId>
-                <artifactId>grpc-bom</artifactId>
-                <version>${grpc.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+    <version>VERSION</version>
+    <parent>
+        <groupId>com.apssouza.api</groupId>
+        <artifactId>grpc-parent</artifactId>
+        <version>VERSION</version>
+    </parent>
     <dependencies>
-        <dependency>
-            <groupId>io.grpc</groupId>
-            <artifactId>grpc-netty-shaded</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.grpc</groupId>
-            <artifactId>grpc-protobuf</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.grpc</groupId>
-            <artifactId>grpc-stub</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>javax.annotation</groupId>
-            <artifactId>javax.annotation-api</artifactId>
-            <version>1.3.2</version>
-        </dependency>
-
+        <!--DEPENDENCIES-->
     </dependencies>
 <!--    <distributionManagement>-->
 <!--        <repository>-->

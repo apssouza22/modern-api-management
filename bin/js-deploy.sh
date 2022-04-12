@@ -3,12 +3,13 @@ set -e
 
 function usage() {
     echo "Deploy JS artefacts.
-    Usage: $0 phoenix-apis-dir
-    Example: $0 ./protos"
+    Usage: $0 phoenix-apis-dir npm-repository
+    Example: $0 ./protos https://artifactory.COMPANY.com/artifactory/api/npm/npm-local/"
 }
 
 if [ "$#" -ge 1 ]; then
     srcDir="$1"
+    npmRepository="$2"
 else
     usage
     exit
@@ -26,7 +27,7 @@ function deployModule() {
   moduleName="$1"
 
   echo "Deploying module $moduleName"
-  npm publish --registry https://artifactory.COMPANY.com/artifactory/api/npm/npm-local/ "$GEN_PATH/$moduleName"
+  npm publish --registry "$npmRepository" "$GEN_PATH/$moduleName"
 }
 
 function deployAll() {

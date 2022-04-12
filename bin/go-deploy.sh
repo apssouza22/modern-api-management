@@ -9,7 +9,7 @@ GO_GEN_PATH=$GEN_PATH/go
 GO_REPO_NAME=protobuf-gen-code
 GO_REPO_URL="git@github.com:apssouza22/$GO_REPO_NAME"
 CURRENT_BRANCH=${GO_REPO_BRANCH:-$(git rev-parse --abbrev-ref HEAD)}
-GO_PKG=gitlab.deem.com/fiji/apis-go
+GO_PKG=gitlab.COMPANY.com/apis-go
 
 # Flags
 PUBLISH=0
